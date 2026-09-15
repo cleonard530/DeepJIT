@@ -34,10 +34,8 @@ inline void* kernel_arg_pointer(const T& value) {
 // Utility to get the current CUDA stream for a given device using stable APIs.
 // Returns a CUstream for use with the CUDA Driver API.
 inline CUstream get_current_cuda_stream(const int32_t device_index) {
-    void* stream_ptr = nullptr;
-    TORCH_ERROR_CODE_CHECK(
-        aoti_torch_get_current_cuda_stream(device_index, &stream_ptr));
-    return static_cast<CUstream>(stream_ptr);
+    auto stream = torch::stable::accelerator::getCurrentStream(device_index);
+    return static_cast<CUstream>(stream.nativeHandle());
 }
 
 // Immutable CUDA kernel handles with shared ownership. Driver resources are
