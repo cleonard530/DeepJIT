@@ -788,7 +788,7 @@ def run_worker():
             sources=[str(TEST_CUDA_PROJECT / 'main.cpp')],
             extra_cflags=[
                 '-std=c++20', '-O3', '-fPIC', '-Wall', '-Wextra', '-Werror',
-                '-DTORCH_TARGET_VERSION=0x020a000000000000', '-DUSE_CUDA',
+                '-DTORCH_TARGET_VERSION=0x020d000000000000', '-DUSE_CUDA',
                 '-Wno-attributes', '-Wno-missing-field-initializers',
                 '-Wno-psabi', '-Wno-deprecated-declarations',
             ],
