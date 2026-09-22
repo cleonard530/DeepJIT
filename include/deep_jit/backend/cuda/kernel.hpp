@@ -56,7 +56,7 @@ public:
 
     static std::shared_ptr<Kernel> load(const std::filesystem::path& dir, const Env& env) {
         // Release GIL to let other Python threads run
-        GilScopedRelease gil_release;
+        [[maybe_unused]] GilScopedRelease gil_release;
 
         // Check existence
         const auto cubin_path = dir / "kernel.cubin";
@@ -100,7 +100,7 @@ public:
     template <typename... Args>
     void launch(const LaunchOptions& launch_options, const Args&... args) const {
         // Release GIL to let other Python threads run
-        GilScopedRelease gil_release;
+        [[maybe_unused]] GilScopedRelease gil_release;
 
         // Checks
         DJ_HOST_ASSERT(kernel_handle != nullptr, "kernel must be loaded before launch");
